@@ -1,5 +1,5 @@
 # Alt-Gr-Esperanto
-Chrome extension typing Esperanto accented characters with the Alt Gr key
+Chrome extension for typing Esperanto accented characters with the Alt Gr key
 
 I've no idea how this will work with keyboards that don't have an AltGr key, but if your keyboard doesn't, try the key on the right of your spacebar. It's registerd as keyCode 18 on my keyboard. 
 
