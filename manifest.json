@@ -1,0 +1,18 @@
+{
+"manifest_version": 2,
+"name": "AltGr Esperanto",
+"description": "Use the AltGr key on a keyboard to type accented esperanto characters.",
+"version": "0.1",
+"icons": {
+"128": "128.png"
+}, 
+"content_scripts": [
+  {
+    "matches": [
+      "<all_urls>"
+    ],
+    "js": ["content.js"]
+  }
+]
+
+}
