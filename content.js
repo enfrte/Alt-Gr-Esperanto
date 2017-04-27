@@ -1,13 +1,25 @@
-/*
-SOFTWARE DISCLAIMER
-This Chrome extension is supplied "AS IS" without any warranties and support.
-I assume no responsibility or liability for the use of the software.
-*/
+
+var altGrEsperanto = (function() {
+
+function setChangeUpListener (el, listener) {
+    el.addEventListener("keyup", listener);
+}
+
+function setChangeDownListener (el, listener) {
+	el.addEventListener("keydown", listener);
+}
+
+var el = document.activeElement;
+
+setChangeUpListener(el, function(event){
+	getCharKeyUp(event)
+});
+
+setChangeDownListener(el, function(event){
+	getCharKeyDown(event);
+});
 
 var altGraphPressed = false;
-
-document.activeElement.onkeydown = function(){ getCharKeyDown(event) }; // detect pressed
-document.activeElement.onkeyup = function(){ getCharKeyUp(event) }; // detect released
 
 function getCharKeyUp(event){
 	if ((event.key || event.keyIdentifier) == "AltGraph" && event.location == 2) {
@@ -16,15 +28,13 @@ function getCharKeyUp(event){
 }
 
 function getCharKeyDown (event){
-	var keyCode = ('which' in event) ? event.which : event.keyCode; 
 	
-	// check if AltGraph has been pressed
-	// can't exit the function on this test because it returns both Control 1 and AltGraph 2
+	var keyCode = ('which' in event) ? event.which : event.keyCode; 
+
 	if ((event.key || event.keyIdentifier) == "AltGraph" && event.location == 2) {
 		altGraphPressed = true;
 	} 
 
-	// check if Shift has been pressed
 	if (event.shiftKey) { 
 		var shiftPressed = true;
 	}
@@ -99,24 +109,8 @@ function getCharKeyDown (event){
 
 }
 
-// Credit for this function: http://jsfiddle.net/user/Znarkus/
 function insertAtCursor(myField, myValue) {
-    //IE support
-    if (document.selection) {
-        myField.focus();
-        sel = document.selection.createRange();
-        sel.text = myValue;
-    }
-    //MOZILLA and others
-    else if (myField.selectionStart || myField.selectionStart == '0') {
-        var startPos = myField.selectionStart;
-        var endPos = myField.selectionEnd;
-        myField.value = myField.value.substring(0, startPos)
-            + myValue
-            + myField.value.substring(endPos, myField.value.length);
-        myField.selectionStart = startPos + myValue.length;
-        myField.selectionEnd = startPos + myValue.length;
-    } else {
-        myField.value += myValue;
-    }
+	document.execCommand('insertHTML', false, myValue);
 }
+
+})();
