@@ -1,23 +1,19 @@
 
 var altGrEsperanto = (function() {
 
-function setChangeUpListener (el, listener) {
-    el.addEventListener("keyup", listener);
-}
+'use strict';
 
-function setChangeDownListener (el, listener) {
-	el.addEventListener("keydown", listener);
-}
+(function(){
+    document.activeElement.addEventListener("keyup", function(event){
+		getCharKeyUp(event);
+	});
+})();
 
-var el = document.activeElement;
-
-setChangeUpListener(el, function(event){
-	getCharKeyUp(event)
-});
-
-setChangeDownListener(el, function(event){
-	getCharKeyDown(event);
-});
+(function(){
+    document.activeElement.addEventListener("keydown", function(event){
+		getCharKeyDown(event);
+	});
+})();
 
 var altGraphPressed = false;
 
@@ -43,73 +39,62 @@ function getCharKeyDown (event){
 		switch (keyCode) {
 			case 67: // c
 				if(shiftPressed && altGraphPressed) {
-					event.preventDefault();
-					insertAtCursor(document.activeElement, '\u0108');
+					insertAtCursor('\u0108');
 				}
 				else if(altGraphPressed) { 
-					event.preventDefault();
-					insertAtCursor(document.activeElement, '\u0109'); 
+					insertAtCursor('\u0109'); 
 				}
 				break;		
 			case 71: // g 
 				if(shiftPressed && altGraphPressed) {
-					event.preventDefault();
-					insertAtCursor(document.activeElement, '\u011C');
+					insertAtCursor('\u011C');
 				}
 				else if(altGraphPressed) { 
-					event.preventDefault();
-					insertAtCursor(document.activeElement, '\u011D'); 
+					insertAtCursor('\u011D'); 
 				}
 				break;		
 			case 72: // h
 				if(shiftPressed && altGraphPressed) {
-					event.preventDefault();
-					insertAtCursor(document.activeElement, '\u0124');
+					insertAtCursor('\u0124');
 				}
 				else if(altGraphPressed) { 
-					event.preventDefault();
-					insertAtCursor(document.activeElement, '\u0125'); 
+					insertAtCursor('\u0125'); 
 				}
 				break;
 			case 74: // j
 				if(shiftPressed && altGraphPressed) {
-					event.preventDefault();
-					insertAtCursor(document.activeElement, '\u0134');
+					insertAtCursor('\u0134');
 				}
 				else if(altGraphPressed) { 
-					event.preventDefault();
-					insertAtCursor(document.activeElement, '\u0135'); 
+					insertAtCursor('\u0135'); 
 				}
 				break;
 			case 83: // s
 				if(shiftPressed && altGraphPressed) {
-					event.preventDefault();
-					insertAtCursor(document.activeElement, '\u015C');
+					insertAtCursor('\u015C');
 				}
 				else if(altGraphPressed) { 
-					event.preventDefault();
-					insertAtCursor(document.activeElement, '\u015D'); 
+					insertAtCursor('\u015D'); 
 				}
 				break;
 			case 85: // u
 				if(shiftPressed && altGraphPressed) {
-					event.preventDefault();
-					insertAtCursor(document.activeElement, '\u016C');
+					insertAtCursor('\u016C');
 				}
 				else if(altGraphPressed) { 
-					event.preventDefault();
-					insertAtCursor(document.activeElement, '\u016D'); 
+					insertAtCursor('\u016D'); 
 				}
 				break;
 			default: 
-				// no esperanto keys pressed
+				// no esperanto + altgr keys pressed
 				return;
 		}
 	}
 
 }
 
-function insertAtCursor(myField, myValue) {
+function insertAtCursor(myValue) {
+	event.preventDefault();
 	document.execCommand('insertHTML', false, myValue);
 }
 
