@@ -5,7 +5,9 @@ I've no idea how this will work with keyboards that don't have an AltGr key, but
 
 You can either build this yourself ([details here](https://support.google.com/chrome/a/answer/2714278?hl=en)) or download "Chrome Extension Files.crx" then in Chrome, open Settings > Extensions and drag the "Chrome Extension Files.crx" into the window area. 
 
-If testing goes well, I will upload to the the chrome extensions web store. 
+#### To do
+
+execCommand is deprecated. Checkout [setRangeText](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/setRangeText) as an alternative. 
 
 ## SOFTWARE DISCLAIMER
 
